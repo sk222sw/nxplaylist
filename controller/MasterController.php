@@ -5,7 +5,7 @@ namespace controller;
 //req views
 require_once("view/MainView.php");
 require_once("view/AddPlaylistView.php");
-require_once("view/NavigationView.php");
+require_once("view/UrlView.php");
 //req models
 require_once("model/Playlist.php");
 //req controllers
@@ -17,19 +17,18 @@ class MasterController {
     
     public function __construct() {
         $this->playlistController = new \controller\PlaylistController();
-        $this->navigationView = new \view\NavigationView();
+        $this->urlView = new \view\UrlView();
     }
     
     public function run() {
         $mainView = new \view\MainView();
         $addPlaylistView = new \view\AddPlaylistView();
         
-        if ($this->navigationView->clickedPlaylists()) {
+        if ($this->urlView->clickedPlaylists()) {
             $playlistController = new \controller\PlaylistController();
             
             $content = $playlistController->playlistAction();
     
-            // $content = $addPlaylistView->playlistInputHTML();
         } else {
             $content = "<h1>Yo!</h1>";
         }

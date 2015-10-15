@@ -4,7 +4,7 @@ namespace view;
 
 // CLASS RESPONSIBILITY:
 // handling routes and url query strings
-class NavigationView {
+class UrlView {
     
     // route names
     private static $home = "/";

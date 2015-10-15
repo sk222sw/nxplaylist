@@ -17,10 +17,15 @@ class PlaylistController {
         $pl3 = new \model\Playlist("disco");
         $pl4 = new \model\Playlist("punk");
 
+        $t1 = new \model\Track("https://www.youtube.com/watch?v=5IrHzrg4qdQ", "6:25", "Ben Klock - Subzero");
+        $t1 = new \model\Track("https://www.youtube.com/watch?v=cRKhrD-MuW4", "7:48", "Kölsch - Opa");
+
         $this->playlists[] = $pl1;
         $this->playlists[] = $pl2;
         $this->playlists[] = $pl3;
         $this->playlists[] = $pl4;
+        
+        
         
     }
 
