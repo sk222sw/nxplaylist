@@ -11,9 +11,6 @@ class Playlist {
         $this->title = $title;
         
         $this->tracks = array();
-        
-        $this->id = $this->createRandomId();
-        
     }
     
     public function getTitle() {
@@ -28,11 +25,7 @@ class Playlist {
     public function getTracks() {
         return $this->tracks();
     }
-    
-    private function createRandomId() {
-        return rand();
-    }
-    
+
     public function getId() {
         return $this->id;
     }
