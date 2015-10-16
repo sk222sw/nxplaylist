@@ -23,16 +23,16 @@ class MasterController {
     public function run() {
         $mainView = new \view\MainView();
         $addPlaylistView = new \view\AddPlaylistView();
+        $playlistController = new \controller\PlaylistController();
         
         if ($this->urlView->clickedPlaylists()) {
-            $playlistController = new \controller\PlaylistController();
             
             $content = $playlistController->playlistAction();
-    
+        } else if ($this->urlView->clickedSpecificPlaylist()) {
+            $content = $playlistController->playlistAction();
         } else {
             $content = "<h1>Yo!</h1>";
         }
-
         
         $mainView->renderPage($content);
     }
