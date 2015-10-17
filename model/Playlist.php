@@ -7,9 +7,9 @@ class Playlist {
     private $title;
     private $id;
 
-    public function __construct($title) {
+    public function __construct($id, $title) {
+        $this->id = $id;
         $this->title = $title;
-        
         $this->tracks = array();
     }
     

@@ -24,4 +24,11 @@ class UrlView {
         return strpos($this->getUrlData(), self::$playlistId);
     }
     
+    public function getPlaylistId() {
+        if (isset($_GET['pl'])) {
+            return $_GET['pl'];        
+        } 
+        return "No id requested.";
+    }
+    
 }
