@@ -12,9 +12,13 @@ class PlaylistDAL extends DALBase {
     }
     
     public function selectAll() {
+
+        // var_dump($this->conn);
+        // exit();
+        
         $sql = "SELECT Id, Title from playlist";
         $result = $this->conn->query($sql);
-        
+                
         $ret = array();
         
         if ($result->num_rows > 0) {
@@ -25,25 +29,15 @@ class PlaylistDAL extends DALBase {
             echo "0 results";
         }
         
-        $this->conn->close();        
         
         return $ret;
     }
     
     public function getPlaylistById($id) {
-        $server = "eu-cdbr-west-01.cleardb.com";
-        $username = "bff0e401b5096a";
-        $password = "3ae2ffe2";
-        $db = "heroku_c1e3b5ffbfdbe7f";
-        
-        $conn = new \mysqli($server, $username, $password, $db);            
 
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+        $sql = "SELECT Id, Title from playlist WHERE Id=".$id;
+        $result = $this->conn->query($sql);
         
-        $sql = "SELECT Id, Title from playlist WHERE Id=" . $id;
-        $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();         
             $ret = new \model\Playlist($row["Id"], $row["Title"]);
@@ -51,7 +45,6 @@ class PlaylistDAL extends DALBase {
             $ret = "0 results";
         }
 
-        $conn->close();        
         return $ret;
 
     }
