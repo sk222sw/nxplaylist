@@ -28,7 +28,9 @@ class PlaylistController {
         if($this->urlView->clickedSpecificPlaylist()){
             $pl = $DAL->getPlaylistById($this->urlView->getPlaylistId());
             return $playlistView->playlistViewHTML($pl->getTitle());
-            
+        }
+        if ($this->playlistListView->clickedAddPlaylist()) {
+            $DAL->addPlaylist($this->playlistListView->getPostTitle());
         }
         
         return $this->playlistListView->playlistListViewHTML($this->playlists);

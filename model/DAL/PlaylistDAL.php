@@ -13,9 +13,6 @@ class PlaylistDAL extends DALBase {
     
     public function selectAll() {
 
-        // var_dump($this->conn);
-        // exit();
-        
         $sql = "SELECT Id, Title from playlist";
         $result = $this->conn->query($sql);
                 
@@ -46,7 +43,15 @@ class PlaylistDAL extends DALBase {
         }
 
         return $ret;
-
+    }
+    
+    public function addPlaylist($title) {
+        $sql = "INSERT INTO Playlist (Title) Values ('" . $title ."')";
+        
+        if ($this->conn->query($sql) === true) {
+            echo "inserted hoppas jkag";
+        }
+        
     }
     
 }
