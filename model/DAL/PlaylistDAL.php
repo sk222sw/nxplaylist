@@ -20,7 +20,9 @@ class PlaylistDAL extends DALBase {
         
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                $ret[] = new \model\Playlist($row["Id"], $row["Title"]);
+                $playlist = new \model\Playlist($row["Title"]);
+                $playlist->setId($row['Id']);
+                $ret[] = $playlist;
             } 
         } else {
             echo "0 results";
@@ -45,8 +47,8 @@ class PlaylistDAL extends DALBase {
         return $ret;
     }
     
-    public function addPlaylist($title) {
-        $sql = "INSERT INTO Playlist (Title) Values ('" . $title ."')";
+    public function addPlaylist($playlist) {
+        $sql = "INSERT INTO Playlist (Title) Values ('" . $playlist->getTitle() ."')";
         
         if ($this->conn->query($sql) === true) {
             return true;

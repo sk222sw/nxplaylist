@@ -16,7 +16,6 @@ class PlaylistListView {
     private static $add = "Add";
     
     public function playlistListViewHTML($playlists) {
-        var_dump($playlists);
         $listHTML = $this->inputHTML();
         
         $listHTML .= "<div><ul>";
@@ -56,7 +55,8 @@ class PlaylistListView {
         }
     }
     
-    private function createPlaylist() {
-        $title = 
+    public function createPlaylistModel() {
+        $title = $this->getPostTitle();
+        return new \model\Playlist($title);
     }
 }
