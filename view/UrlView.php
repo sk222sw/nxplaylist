@@ -10,7 +10,8 @@ class UrlView {
     private static $home = "/";
     private static $playlists = "?playlists";
     private static $newPlaylist = "?playlists/new";  //TODO
-    private static $playlistId = "?pl=";  //TODO
+    private static $playlistId = "?pl";
+    private static $deleteId = "del";
     
     public function getUrlData() {
         return $_SERVER['REQUEST_URI'];
@@ -21,14 +22,23 @@ class UrlView {
     }
     
     public function clickedSpecificPlaylist() {
-        return strpos($this->getUrlData(), self::$playlistId);
+        return strpos($this->getUrlData(), "?pl=");
     }
     
     public function getPlaylistId() {
         if (isset($_GET['pl'])) {
             return $_GET['pl'];        
         } 
+        if (isset($_GET['del'])) {
+            return $_GET['del'];        
+        }         
         return "No id requested.";
+    }
+    
+    public function clickedDeletePlaylist() {
+        if (isset($_GET['del'])) {
+            return $_GET['del'];
+        }
     }
     
 }

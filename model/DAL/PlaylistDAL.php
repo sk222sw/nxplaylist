@@ -49,9 +49,16 @@ class PlaylistDAL extends DALBase {
         $sql = "INSERT INTO Playlist (Title) Values ('" . $title ."')";
         
         if ($this->conn->query($sql) === true) {
-            echo "inserted hoppas jkag";
+            echo "Playlist added";
         }
         
+    }
+    
+    public function deletePlaylist($id) {
+        $sql = "DELETE FROM Playlist WHERE Id =" . $id;
+        if ($this->conn->query($sql) === true) {
+            echo "deleted";
+        }
     }
     
 }

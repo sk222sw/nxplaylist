@@ -16,7 +16,11 @@ class PlaylistListView {
         $listHTML .= "<div><ul>";
         foreach ($playlists as $pl) {
             $listHTML .= '
-                <li><a href="?pl='. $pl->getId() .'">'.$pl->getTitle().'</a> ID: '. $pl->getId() .'</li>
+                <li>
+                    <a href="?pl='. $pl->getId() .'">
+                        '.$pl->getTitle().'
+                    </a>
+                </li>
             ';
         }
         
