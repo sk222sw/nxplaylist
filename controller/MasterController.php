@@ -2,6 +2,7 @@
 
 namespace controller;
 
+require_once("other/SessionHandler.php");
 //req views
 require_once("view/MainView.php");
 require_once("view/UrlView.php");
@@ -9,6 +10,8 @@ require_once("view/UrlView.php");
 require_once("model/Playlist.php");
 //req controllers
 require_once("PlaylistController.php");
+
+
 
 class MasterController {
     

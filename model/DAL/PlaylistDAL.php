@@ -51,6 +51,7 @@ class PlaylistDAL extends DALBase {
         $sql = "INSERT INTO Playlist (Title) Values ('" . $playlist->getTitle() ."')";
         
         if ($this->conn->query($sql) === true) {
+            $this->setMessage("playlistAdded");
             return true;
         }
         return false;

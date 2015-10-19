@@ -6,7 +6,12 @@ namespace view;
 // gather other views and echo it to the DOM
 class MainView {
     
+    public function __construct() {
+        $this->session = new \other\SessionHandler();
+    }
+    
     public function renderPage($content) {
+        $this->reload();
         echo '
             <!DOCTYPE html>
             <html>
@@ -20,7 +25,6 @@ class MainView {
             </body>
             </html>
         ';
-        
     }
     
     private function headerHTML() {
@@ -37,6 +41,30 @@ class MainView {
     private function contentHTML($content) {
         echo $content;
     }
+    
+    private function message() {
+        if (isset($_SESSION['flashMessage'])) {
+            $message = "";
+            switch ($_SESSION['flashMessage']) {
+                case "playlistAdded":
+                    $message = "Playlist added!";
+                    break;
+                default:
+                    $message = "";
+                    break;            
+            }
+            unset($_SESSION['flashMessage']);
+            return $message;
+        }   
+    }
 
+    private function reload() {
+        if ($_POST) {
+		    header("Location: " . $_SERVER['REQUEST_URI']);
+		  //  exit();        
+        } else {
+            echo $this->message();
+        }
+    }
     
 }

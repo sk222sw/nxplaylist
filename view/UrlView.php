@@ -41,7 +41,7 @@ class UrlView {
         }
     }
     
-    public function setHeader() {
+    public function pageStatus() {
     }
     
 }

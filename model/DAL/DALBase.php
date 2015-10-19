@@ -2,12 +2,16 @@
 
 namespace DAL;
 
+
+
 class DALBase {
     
     protected $conn;
+    private $session;
     
     public function __construct() {
         $this->conn = $this->connect();
+        $this->session = new \other\SessionHandler();
     }
     
     private function connect() {
@@ -25,6 +29,10 @@ class DALBase {
         }
 
         return $conn;
+    }
+    
+    protected function setMessage($value) {
+        $this->session->setMessage($value);
     }
     
 }

@@ -9,27 +9,37 @@ namespace view;
 /////////////////
 //dependencies: 
 //  \model\Playlist
+//  \other\SessionHandler
 
 class PlaylistListView {
     
     private static $title = "Title";
     private static $add = "Add";
+    private $message = "";
+    
+    private static $playlistAdded = "Playlist added!";
+    
+    public function __construct() {
+        $this->session = new \other\SessionHandler();
+    }
     
     public function playlistListViewHTML($playlists) {
         $listHTML = $this->inputHTML();
-        
-        $listHTML .= "<div><ul>";
-        foreach ($playlists as $pl) {
-            $listHTML .= '
-                <li>
-                    <a href="?pl='. $pl->getId() .'">
-                        '.$pl->getTitle().'
-                    </a>
-                </li>
-            ';
-        }
-        
-        $listHTML .= "</ul></div>";
+        $listHTML .= "
+        <div>
+            <ul>";
+            foreach ($playlists as $pl) {
+                $listHTML .= '
+                    <li>
+                        <a href="?pl='. $pl->getId() .'">
+                            '.$pl->getTitle().'
+                        </a>
+                    </li>
+                ';
+            }
+            $listHTML .= "</ul>
+        </div>";
+
         
         return $listHTML;
     }
@@ -59,4 +69,20 @@ class PlaylistListView {
         $title = $this->getPostTitle();
         return new \model\Playlist($title);
     }
+    
+    public function getMessage() {
+        if (isset($_SESSION['flashMessage'])) {
+            switch ($_SESSION['flashMessage']) {
+                case "playlistAdded":
+                    return self::$playlistAdded;
+                    break;
+                
+                default:
+                    // code...
+                    break;
+            }
+        }
+        else return "";
+    }
+    
 }

@@ -30,10 +30,8 @@ class PlaylistController {
             return $playlistView->playlistViewHTML($pl);
         }
         if ($this->playlistListView->clickedAddPlaylist()) {
-            // $playlistTitle = $this->playlistListView->getPostTitle();
             $playlist = $this->playlistListView->createPlaylistModel();
             if($DAL->addPlaylist($playlist)) {
-                echo 'added';
             }
         }
         if ($this->urlView->clickedDeletePlaylist()) {
