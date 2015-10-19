@@ -30,14 +30,18 @@ class PlaylistController {
             return $playlistView->playlistViewHTML($pl);
         }
         if ($this->playlistListView->clickedAddPlaylist()) {
-            $DAL->addPlaylist($this->playlistListView->getPostTitle());
+            $playlistTitle = $this->playlistListView->getPostTitle();
+            if($DAL->addPlaylist($playlistTitle)) {
+                echo 'added';
+            }
         }
         if ($this->urlView->clickedDeletePlaylist()) {
             $DAL->deletePlaylist($this->urlView->getPlaylistId());
+            header("Location: /?playlists");
         }
         
         return $this->playlistListView->playlistListViewHTML($this->playlists);
-        
     }
     
+
 }

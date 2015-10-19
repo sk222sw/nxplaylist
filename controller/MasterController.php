@@ -4,7 +4,6 @@ namespace controller;
 
 //req views
 require_once("view/MainView.php");
-require_once("view/AddPlaylistView.php");
 require_once("view/UrlView.php");
 //req models
 require_once("model/Playlist.php");
@@ -22,7 +21,6 @@ class MasterController {
     
     public function run() {
         $mainView = new \view\MainView();
-        $addPlaylistView = new \view\AddPlaylistView();
         $playlistController = new \controller\PlaylistController();
         
         if ($this->urlView->clickedPlaylists()) {

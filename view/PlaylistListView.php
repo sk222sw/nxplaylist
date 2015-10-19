@@ -2,15 +2,21 @@
 
 namespace view;
 
+/////////////////
 // CLASS RESPONSIBILITY:
 // return playlists as links and stuff in HTML
+
+/////////////////
+//dependencies: 
+//  \model\Playlist
+
 class PlaylistListView {
     
     private static $title = "Title";
     private static $add = "Add";
     
     public function playlistListViewHTML($playlists) {
-
+        var_dump($playlists);
         $listHTML = $this->inputHTML();
         
         $listHTML .= "<div><ul>";
@@ -50,4 +56,7 @@ class PlaylistListView {
         }
     }
     
+    private function createPlaylist() {
+        $title = 
+    }
 }

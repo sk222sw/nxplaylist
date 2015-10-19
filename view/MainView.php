@@ -37,4 +37,6 @@ class MainView {
     private function contentHTML($content) {
         echo $content;
     }
+
+    
 }
