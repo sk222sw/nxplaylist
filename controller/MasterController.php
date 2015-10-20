@@ -27,7 +27,6 @@ class MasterController {
         $playlistController = new \controller\PlaylistController();
         
         if ($this->urlView->clickedPlaylists()) {
-            
             $content = $playlistController->playlistAction();
         } else if ($this->urlView->clickedSpecificPlaylist()) {
             $content = $playlistController->playlistAction();

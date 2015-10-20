@@ -27,6 +27,7 @@ class PlaylistListView {
         $listHTML = $this->inputHTML();
         $listHTML .= "
         <div>
+            ". $this->showMessage() ."
             <ul>";
             foreach ($playlists as $pl) {
                 $listHTML .= '
@@ -70,11 +71,12 @@ class PlaylistListView {
         return new \model\Playlist($title);
     }
     
-    public function getMessage() {
+    private function getMessage() {
+        $message = "";
         if (isset($_SESSION['flashMessage'])) {
             switch ($_SESSION['flashMessage']) {
                 case "playlistAdded":
-                    return self::$playlistAdded;
+                    $message = self::$playlistAdded;
                     break;
                 
                 default:
@@ -82,7 +84,14 @@ class PlaylistListView {
                     break;
             }
         }
-        else return "";
+        unset($_SESSION['flashMessage']);
+        return $message;
+    }
+    
+    private function showMessage() {
+        if (!$_POST) {
+            return $this->getMessage();   
+        }
     }
     
 }

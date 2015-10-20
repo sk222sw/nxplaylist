@@ -43,8 +43,8 @@ class MainView {
     }
     
     private function message() {
+        $message = "";
         if (isset($_SESSION['flashMessage'])) {
-            $message = "";
             switch ($_SESSION['flashMessage']) {
                 case "playlistAdded":
                     $message = "Playlist added!";
@@ -54,16 +54,14 @@ class MainView {
                     break;            
             }
             unset($_SESSION['flashMessage']);
-            return $message;
         }   
+        return $message;
     }
 
     private function reload() {
         if ($_POST) {
 		    header("Location: " . $_SERVER['REQUEST_URI']);
-		  //  exit();        
-        } else {
-            echo $this->message();
+		    exit();        
         }
     }
     

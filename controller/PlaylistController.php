@@ -32,6 +32,7 @@ class PlaylistController {
         if ($this->playlistListView->clickedAddPlaylist()) {
             $playlist = $this->playlistListView->createPlaylistModel();
             if($DAL->addPlaylist($playlist)) {
+                
             }
         }
         if ($this->urlView->clickedDeletePlaylist()) {
