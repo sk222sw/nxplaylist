@@ -79,7 +79,8 @@ class PlaylistListView {
         $title = $this->getPostTitle();
 
         if ($this->validate($title)) {
-            return new \model\Playlist($title);
+            $pl = new \model\Playlist($title);
+            $pl->save();
         }
 
     }

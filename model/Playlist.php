@@ -15,6 +15,8 @@ class Playlist {
         $this->id = 0;
         $this->title = $title;
         $this->tracks = array();
+        
+        $this->DAL = new \dal\PlaylistDAL();
     }
     
     public function getTitle() {
@@ -36,6 +38,10 @@ class Playlist {
     
     public function setId($id) {
         $this->id = $id;
+    }
+    
+    public function save() {
+        $this->DAL->addPlaylist($this);
     }
     
 }
