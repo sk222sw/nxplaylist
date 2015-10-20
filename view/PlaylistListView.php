@@ -17,7 +17,16 @@ class PlaylistListView {
     private static $add = "Add";
     private $message = "";
     
+    //possible error/success messages:
     private static $playlistAdded = "Playlist added!";
+    private static $titleTooShort = "Title must be longer than 3 characters";
+    private static $titleTooLong = "Title must be shorter than 50 characters";
+    private static $invalidCharacters = "Title can be numbers, letters, space and _ - ()";
+    
+    //possible flash messages:
+    private static $flashTitleTooShort = "titleTooShort";
+    private static $flashTitleTooLong = "titleTooLong";
+    private static $flashInvalidCharacters = "invalidCharacters";
     
     public function __construct() {
         $this->session = new \other\SessionHandler();
@@ -68,7 +77,11 @@ class PlaylistListView {
     
     public function createPlaylistModel() {
         $title = $this->getPostTitle();
-        return new \model\Playlist($title);
+
+        if ($this->validate($title)) {
+            return new \model\Playlist($title);
+        }
+
     }
     
     private function getMessage() {
@@ -78,14 +91,37 @@ class PlaylistListView {
                 case "playlistAdded":
                     $message = self::$playlistAdded;
                     break;
-                
+                case self::$flashTitleTooShort:
+                    $message = self::$titleTooShort;
+                    break;
+                case "titleTooLong":
+                    $message = self::$titleTooLong;
+                    break;
+                case "invalidCharacters":
+                    $message = self::$invalidCharacters;
+                    break;
                 default:
-                    // code...
+                    $message = "";
                     break;
             }
         }
         unset($_SESSION['flashMessage']);
         return $message;
+    }
+    
+    private function validate($stringToValidate) {
+        if (strlen($stringToValidate) < 3) {
+            $_SESSION['flashMessage'] = self::$flashTitleTooShort;
+            return false;
+        } else if (strlen($stringToValidate) > 50) {
+            $_SESSION['flashMessage'] = self::$flashTitleTooLong;
+            return false;
+        } 
+        else if (!preg_match("/[^-a-z0-9_() ]/i", $stringToValidate) == false) {
+            $_SESSION['flashMessage'] = self::$flashInvalidCharacters;
+            return false;
+        } 
+        return true;
     }
     
     private function showMessage() {
