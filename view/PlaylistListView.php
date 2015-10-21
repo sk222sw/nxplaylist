@@ -22,6 +22,7 @@ class PlaylistListView {
     private static $titleTooShort = "Title must be longer than 3 characters";
     private static $titleTooLong = "Title must be shorter than 50 characters";
     private static $invalidCharacters = "Title can be numbers, letters, space and _ - ()";
+    private static $playlistDeleted = "Playlist deleted.";
     
     //possible flash messages:
     private static $flashTitleTooShort = "titleTooShort";
@@ -49,8 +50,6 @@ class PlaylistListView {
             }
             $listHTML .= "</ul>
         </div>";
-
-        
         return $listHTML;
     }
     
@@ -85,6 +84,11 @@ class PlaylistListView {
 
     }
     
+    public function deletePlaylist() {
+        
+        
+    }
+    
     private function getMessage() {
         $message = "";
         if (isset($_SESSION['flashMessage'])) {
@@ -101,6 +105,9 @@ class PlaylistListView {
                 case "invalidCharacters":
                     $message = self::$invalidCharacters;
                     break;
+                case "playlistDeleted":
+                    $message = self::$playlistDeleted;
+                    break;                    
                 default:
                     $message = "";
                     break;

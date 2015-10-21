@@ -20,7 +20,7 @@ class PlaylistController {
         $this->urlView = new \view\UrlView();
         $this->playlistListView = new \view\PlaylistListView();
         $DAL = new \DAL\PlaylistDAL();
-        
+        $pl = 0;
         $playlistView = new \view\PlaylistView();
         
         $this->playlists = $DAL->selectAll();
@@ -34,9 +34,9 @@ class PlaylistController {
         }
         if ($this->urlView->clickedDeletePlaylist()) {
             $DAL->deletePlaylist($this->urlView->getPlaylistId());
-            header("Location: /?playlists");
         }
         
+        $DAL->close();
         return $this->playlistListView->playlistListViewHTML($this->playlists);
     }
     
