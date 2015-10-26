@@ -59,6 +59,10 @@ class MainView {
     }
 
     private function reload() {
+        if (isset($_GET['del'])) {
+		    header("Location: /?playlists");
+		    exit();     
+        }
         if ($_POST) {
 		    header("Location: " . $_SERVER['REQUEST_URI']);
 		    exit();        

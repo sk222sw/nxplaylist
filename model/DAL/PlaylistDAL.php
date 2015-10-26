@@ -32,13 +32,12 @@ class PlaylistDAL extends DALBase {
     }
     
     public function getPlaylistById($id) {
-
         $sql = "SELECT Id, Title from playlist WHERE Id=".$id;
         $result = $this->conn->query($sql);
         $row;
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();    
-            $ret = new \model\Playlist($row["Id"], $row["Title"]);
+            $ret = new \model\Playlist($row["Title"]);
             $ret->setId($row["Id"]);
         } else {
             $ret = "0 results";

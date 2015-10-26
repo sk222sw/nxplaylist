@@ -4,7 +4,6 @@ namespace model;
 
 class Track {
     
-    //Entered by user or from youtube api?
     private $url;
     private $length;
     private $title;  
