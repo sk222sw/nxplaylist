@@ -83,12 +83,7 @@ class PlaylistListView {
         }
 
     }
-    
-    public function deletePlaylist() {
-        
-        
-    }
-    
+
     private function getMessage() {
         $message = "";
         if (isset($_SESSION['flashMessage'])) {

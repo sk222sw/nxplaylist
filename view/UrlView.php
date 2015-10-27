@@ -38,4 +38,5 @@ class UrlView {
     public function clickedDeletePlaylist() {
         return isset($_GET['del']);
     }
+
 }
