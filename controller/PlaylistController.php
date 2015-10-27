@@ -6,6 +6,7 @@ require_once("view/UrlView.php");
 
 require_once("view/PlaylistListView.php");
 require_once("view/PlaylistView.php");
+require_once("view/TrackView.php");
 require_once("model/DAL/PlaylistDAL.php");
 require_once("model/DAL/TrackDAL.php");
 require_once("model/Track.php");
@@ -21,12 +22,17 @@ class PlaylistController {
     public function playlistAction() {
         $this->urlView = new \view\UrlView();
         $this->playlistListView = new \view\PlaylistListView();
+        $this->trackView = new \view\TrackView();
         $playlistDAL = new \DAL\PlaylistDAL();
         $trackDAL = new \DAL\TrackDAL();
         
         //$pl = 0;
         $playlistView = new \view\PlaylistView();
         $this->playlists = $playlistDAL->selectAll();
+        if ($this->urlView->clickedSpecificTrack() == true) {
+            $track = $trackDAL->getTrackById($this->urlView->getTrackId());
+            return $this->trackView->trackViewHTML($track);
+        }
         
         if ($playlistView->clickedAddTrack()) {
             $track = $playlistView->createTrackModel();

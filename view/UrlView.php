@@ -25,6 +25,10 @@ class UrlView {
         return strpos($this->getUrlData(), "?pl=");
     }
     
+    public function clickedSpecificTrack() {
+        return strpos($this->getUrlData(), "?tr=");
+    }    
+    
     public function getPlaylistId() {
         if (isset($_GET['pl'])) {
             return $_GET['pl'];        
@@ -33,6 +37,10 @@ class UrlView {
             return $_GET['del'];        
         }         
         return "No id requested.";
+    }
+
+    public function getTrackId() {
+        return isset($_GET['tr']) ? $_GET['tr'] : false;
     }
     
     public function clickedDeletePlaylist() {

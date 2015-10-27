@@ -58,6 +58,14 @@ class PlaylistView {
         ';
     }
     
+    // https://halgatewood.com/php-get-the-youtube-video-id-from-a-youtube-url
+    function getYouTubeIdFromURL($url)
+    {
+        $url_string = parse_url($url, PHP_URL_QUERY);
+        parse_str($url_string, $args);
+        return isset($args['v']) ? $args['v'] : false;
+    } 
+        
     private function validate($stringToValidate) {
         if (strlen($stringToValidate) < 3) {
             $_SESSION['flashMessage'] = self::$flashTitleTooShort;
@@ -82,7 +90,7 @@ class PlaylistView {
         $title = $this->getTitle();
         $url = $this->getUrl();
         
-        $track = new \model\Track($playlistId, $title, $url);
+        $track = new \model\Track(0, $playlistId, $title, $url);
         return $track;
     }
     
@@ -91,11 +99,14 @@ class PlaylistView {
             return $_POST[self::$title];
         }
     }
+    
     private function getUrl() {
         if (isset($_POST[self::$url])) {
-            return $_POST[self::$url];
+            $yUrl = $this->getYouTubeIdFromURL($_POST[self::$url]);
+            return $yUrl;
         }
     }
+    
     private function getPlaylistId() {
         return $_GET["pl"];
     }
