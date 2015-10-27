@@ -14,7 +14,7 @@ class TrackView {
     private function embedHTML($url) {
         return '
             <iframe id="ytplayer" frameborder="0" type="text/html" width="640" height="390"
-            src="http://www.youtube.com/embed/'.$url.'?autoplay=1&color=white&controls=1&disablekb=0&rel=0" />          
+            src="https://www.youtube.com/embed/'.$url.'?autoplay=1&color=white&controls=1&disablekb=0&rel=0" />          
         ';
     }
     
