@@ -56,6 +56,7 @@ class PlaylistDAL extends DALBase {
     }
     
     public function deletePlaylist($id) {
+        var_dump($id); exit();
         $sql = "DELETE FROM Playlist WHERE Id =" . $id;
         if ($this->conn->query($sql) === true) {
             $this->setMessage("playlistDeleted");

@@ -40,11 +40,19 @@ class UrlView {
     }
 
     public function getTrackId() {
-        return isset($_GET['tr']) ? $_GET['tr'] : false;
+        if (isset($_GET['trackdel'])) {
+            return $_GET['trackdel'];
+        } else if (isset($_GET['tr'])){
+            return $_GET['tr'];
+        } return false;
     }
     
     public function clickedDeletePlaylist() {
         return isset($_GET['del']);
+    }
+    
+    public function clickedDeleteTrack() {
+        return isset($_GET['trackdel']);
     }
 
 }

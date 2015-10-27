@@ -48,5 +48,12 @@ class TrackDAL extends DALBase {
         } 
         return $track;
     }
+      
+    public function deleteTrack($id) {
+        $sql = "DELETE FROM Track WHERE Id =" . $id;
+        if ($this->conn->query($sql) === true) {
+            $this->setMessage("trackDeleted");
+        }
+    }    
        
 }

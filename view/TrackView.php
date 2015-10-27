@@ -7,7 +7,10 @@ class TrackView {
     public function trackViewHTML($track) {
         return '
             <h2>'.$track->getTitle().'</h2>
-            '.$this->embedHTML($track->getUrl()).'
+            <a href="?pl='.$track->getPlaylistId().'&trackdel='. $track->getId() .'">Delete track</a>
+            <div>
+                '.$this->embedHTML($track->getUrl()).'  
+            </div>
         ';
     }
     

@@ -19,9 +19,9 @@ class PlaylistListView {
     
     //possible error/success messages:
     private static $playlistAdded = "Playlist added!";
-    private static $titleTooShort = "Title must be longer than 3 characters";
+    private static $titleTooShort = "Title must be longer than 2 characters";
     private static $titleTooLong = "Title must be shorter than 50 characters";
-    private static $invalidCharacters = "Title can be numbers, letters, space and _ - ()";
+    private static $invalidCharacters = "Title can be numbers, letters, and _ -";
     private static $playlistDeleted = "Playlist deleted.";
     
     //possible flash messages:
@@ -120,7 +120,7 @@ class PlaylistListView {
             $_SESSION['flashMessage'] = self::$flashTitleTooLong;
             return false;
         } 
-        else if (!preg_match("/[^-a-z0-9_() ]/i", $stringToValidate) == false) {
+        else if (!preg_match("/[^-a-z0-9_]/i", $stringToValidate) == false) {
             $_SESSION['flashMessage'] = self::$flashInvalidCharacters;
             return false;
         } 

@@ -36,9 +36,15 @@ class PlaylistController {
         
         if ($playlistView->clickedAddTrack()) {
             $track = $playlistView->createTrackModel();
-            $trackDAL->addTrack($track);
+            if ($playlistView->createTrackModel()) {
+                $trackDAL->addTrack($track);
+            }
         } 
         
+        if ($this->urlView->clickedDeleteTrack()) {
+            // var_dump($this->urlView->getTrackId()); exit();
+            $trackDAL->deleteTrack($this->urlView->getTrackId());
+        }
         if($this->urlView->clickedSpecificPlaylist() == true){
             $pl = $playlistDAL->getPlaylistById($this->urlView->getPlaylistId());
             return $playlistView->playlistViewHTML($pl);

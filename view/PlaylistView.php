@@ -10,13 +10,25 @@ class PlaylistView {
     private static $url = "URL";
     private static $add = "AddTrack";
     
+    private static $flashTitleTooShort = "titleTooShort";
+    private static $flashTitleTooLong = "titleTooLong";
+    private static $flashInvalidCharacters = "invalidCharacters";    
+    private static $flashInvalidURL = "invalidURL";    
+    
+    private static $trackAdded = "Track added!";
+    private static $titleTooShort = "Title must be longer than 2 characters";
+    private static $titleTooLong = "Title must be shorter than 50 characters";
+    private static $invalidCharacters = "Title can be numbers, letters, space and _ -";
+    private static $invalidURL = "URL is invalid";
+    private static $trackDeleted = "Track deleted.";    
+    
     public function playlistViewHTML(\model\Playlist $pl) {
         return '
             <h1>'.$pl->getTitle().'</h1>
             <div>
-                <a href="?playlists&del='. $pl->getId() .'">Delete</a>
+                <a href="?playlists&del='. $pl->getId() .'">Delete playlist</a>
             </div>
-    
+            <div>'.$this->showMessage().'</div>
             <div>'. $this->trackInputHTML() .'</div>
             <div>'.
                 $this->getTracks($pl)
@@ -59,8 +71,7 @@ class PlaylistView {
     }
     
     // https://halgatewood.com/php-get-the-youtube-video-id-from-a-youtube-url
-    function getYouTubeIdFromURL($url)
-    {
+    function getYouTubeIdFromURL($url) {
         $url_string = parse_url($url, PHP_URL_QUERY);
         parse_str($url_string, $args);
         return isset($args['v']) ? $args['v'] : false;
@@ -79,7 +90,7 @@ class PlaylistView {
             return false;
         } 
         return true;
-    }    
+    }
     
     public function clickedAddTrack() {
         return isset($_POST[self::$add]);
@@ -90,8 +101,11 @@ class PlaylistView {
         $title = $this->getTitle();
         $url = $this->getUrl();
         
-        $track = new \model\Track(0, $playlistId, $title, $url);
-        return $track;
+        if ($this->validate($title)) {
+            $track = new \model\Track(0, $playlistId, $title, $url);
+            return $track;
+        }
+        return false;
     }
     
     private function getTitle() {
@@ -111,5 +125,39 @@ class PlaylistView {
         return $_GET["pl"];
     }
     
+    private function showMessage() {
+        if (!$_POST) {
+            return $this->getMessage();   
+        }
+    }    
+    
+    private function getMessage() {
+        $message = "";
+        if (isset($_SESSION['flashMessage'])) {
+            switch ($_SESSION['flashMessage']) {
+                case "trackAdded":
+                    $message = self::$trackAdded;
+                    break;
+                case self::$flashTitleTooShort:
+                    $message = self::$titleTooShort;
+                    break;
+                case "titleTooLong":
+                    $message = self::$titleTooLong;
+                    break;
+                case "invalidCharacters":
+                    $message = self::$invalidCharacters;
+                    break;
+                case "trackDeleted":
+                    $message = self::$trackDeleted;
+                    break;      
+                case self::$flashInvalidURL:
+                    $message = self::$invalidURL;
+                default:
+                    break;
+            }
+        }
+        unset($_SESSION['flashMessage']);
+        return $message;
+    }    
     
 }

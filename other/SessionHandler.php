@@ -13,11 +13,7 @@ class SessionHandler {
     public function setMessage($value) {
         $_SESSION["flashMessage"] = $value;
     }
-    
-    public function unsetMessage() {
-        
-    }
-    
+
     public function getTempData() {
         if (isset($_SESSION['flashMessage'])) {
             $value = $_SESSION['flashMessage'];
