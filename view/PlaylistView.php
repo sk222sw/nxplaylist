@@ -11,6 +11,9 @@ class PlaylistView {
     private static $add = "AddTrack";
     
     public function playlistViewHTML(\model\Playlist $pl) {
+        var_dump($pl->getTracks()); 
+        
+        // $this->getTracks($pl);
         return '
             <h1>'.$pl->getTitle().'</h1>
             <div>
@@ -19,6 +22,10 @@ class PlaylistView {
     
             <div>'. $this->trackInputHTML() .'</div>
         ';
+    }
+    
+    private function getTracks($pl) {
+        $pl->getTracks();
     }
     
     public function trackInputHTML(){

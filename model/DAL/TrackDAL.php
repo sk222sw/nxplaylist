@@ -18,4 +18,23 @@ class TrackDAL extends DALBase {
         return false;        
     }
     
+    public function getTracksByPlaylistId($playlistId) {
+        $sql = "SELECT PlaylistId, Title, Url from Track WHERE PlaylistId=".$playlistId;
+        
+        $result = $this->conn->query($sql);
+                
+        $trackList = array();
+        
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $track = new \model\Track($row["PlaylistId"], $row["Title"], $row["Url"]);
+                $trackList[] = $track;
+            } 
+        } else {
+            echo "0 results";
+        }
+        
+        return $trackList;
+    }
+       
 }
