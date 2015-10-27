@@ -4,11 +4,13 @@ namespace model;
 
 class Track {
     
+    private $id;
     private $playlistId;
     private $title;  
     private $url;
     
-    public function __construct($playlistId, $title, $url) {
+    public function __construct($id, $playlistId, $title, $url) {
+        $this->id = $id;
         $this->playlistId = $playlistId;
         $this->title = $title;
         $this->url = $url;
@@ -24,6 +26,10 @@ class Track {
     
     public function getUrl() {
         return $this->url;
+    }
+    
+    public function getId() {
+        return $this->id;
     }
     
 }
