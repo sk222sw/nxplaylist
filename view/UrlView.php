@@ -9,9 +9,10 @@ class UrlView {
     // route names
     private static $home = "/";
     private static $playlists = "?playlists";
-    private static $newPlaylist = "?playlists/new";  //TODO
-    private static $playlistId = "pl";
-    private static $deleteId = "del";
+    private static $playlistId = 'pl';
+    private static $deleteId = 'del';
+    private static $deleteTrackId = 'trackdel';
+    private static $trackId = 'tr';
     
     public function getUrlData() {
         return $_SERVER['REQUEST_URI'];
@@ -22,37 +23,36 @@ class UrlView {
     }
     
     public function clickedSpecificPlaylist() {
-        return strpos($this->getUrlData(), "?pl=");
+        return strpos($this->getUrlData(), "?".self::$playlistId."=");
     }
     
     public function clickedSpecificTrack() {
-        return strpos($this->getUrlData(), "?tr=");
+        return strpos($this->getUrlData(), "?".self::$trackId."=");
     }    
     
     public function getPlaylistId() {
-        if (isset($_GET['pl'])) {
-            return $_GET['pl'];        
+        if (isset($_GET[self::$playlistId])) {
+            return $_GET[self::$playlistId];        
         } 
         if ($this->clickedDeletePlaylist()) {
-            return $_GET['del'];        
+            return $_GET[self::$deleteId];        
         }         
-        return "No id requested.";
     }
 
     public function getTrackId() {
-        if (isset($_GET['trackdel'])) {
-            return $_GET['trackdel'];
-        } else if (isset($_GET['tr'])){
-            return $_GET['tr'];
+        if (isset($_GET[self::$deleteTrackId])) {
+            return $_GET[self::$deleteTrackId];
+        } else if (isset($_GET[self::$trackId])){
+            return $_GET[self::$trackId];
         } return false;
     }
     
     public function clickedDeletePlaylist() {
-        return isset($_GET['del']);
+        return isset($_GET[self::$deleteId]);
     }
     
     public function clickedDeleteTrack() {
-        return isset($_GET['trackdel']);
+        return isset($_GET[self::$deleteTrackId]);
     }
 
 }

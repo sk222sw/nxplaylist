@@ -49,8 +49,10 @@ class PlaylistController {
             return $playlistView->playlistViewHTML($pl);
         }
         if ($this->playlistListView->clickedAddPlaylist()) {
-            $playlist = $this->playlistListView->createPlaylistModel();
-            $this->service->addPlaylist($playlist);
+            if ($this->playlistListView->createPlaylistModel()) {
+                $playlist = $this->playlistListView->createPlaylistModel();
+                $this->service->addPlaylist($playlist);
+            }
         }
         if ($this->urlView->clickedDeletePlaylist()) {
             $this->service->deletePlaylist($this->urlView->getPlaylistId());

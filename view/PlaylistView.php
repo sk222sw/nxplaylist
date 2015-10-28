@@ -14,11 +14,13 @@ class PlaylistView {
     private static $flashTitleTooLong = "titleTooLong";
     private static $flashInvalidCharacters = "invalidCharacters";    
     private static $flashInvalidURL = "invalidURL";    
+    private static $flashTrackAdded = "trackAdded";
+    private static $flashDeleted = "trackDeleted";
     
     private static $trackAdded = "Track added!";
     private static $titleTooShort = "Title must be longer than 2 characters";
     private static $titleTooLong = "Title must be shorter than 50 characters";
-    private static $invalidCharacters = "Title can be numbers, letters, space and _ -";
+    private static $invalidCharacters = "Title can be numbers, letters and _ -";
     private static $invalidURL = "URL is invalid";
     private static $trackDeleted = "Track deleted.";    
     
@@ -136,19 +138,19 @@ class PlaylistView {
         $message = "";
         if (isset($_SESSION['flashMessage'])) {
             switch ($_SESSION['flashMessage']) {
-                case "trackAdded":
+                case self::$flashTrackAdded:
                     $message = self::$trackAdded;
                     break;
                 case self::$flashTitleTooShort:
                     $message = self::$titleTooShort;
                     break;
-                case "titleTooLong":
+                case self::$flashTitleTooLong:
                     $message = self::$titleTooLong;
                     break;
-                case "invalidCharacters":
+                case slef::$flashInvalidCharacters:
                     $message = self::$invalidCharacters;
                     break;
-                case "trackDeleted":
+                case self::$flashDeleted:
                     $message = self::$trackDeleted;
                     break;      
                 case self::$flashInvalidURL:
