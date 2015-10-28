@@ -2,6 +2,8 @@
 
 namespace model;
 
+require_once("other/ValidationHandler.php");
+
 class Playlist {
     
     private $title;
@@ -9,15 +11,21 @@ class Playlist {
     private $tracks;
 
     public function __construct($title) {
-        if (strlen($title) > 50 || strlen($title) < 3) {
-            // throw new \Exception("Title must be longer than 3 characters and shorter than 50 characters.");
-        }
-        $this->id = 0;
-        $this->title = $title;
-        $this->tracks = array();
+        $validate = new \other\ValidationHandler();
         
-        $this->DAL = new \dal\PlaylistDAL();
-        $this->trackDAL = new \dal\TrackDAL();
+        try {
+            $this->id = 0;
+            $this->title = $title;
+            $this->tracks = array();
+            
+            $validate->validateLength($this->title, 3, 50);       
+            $validate->validateWithRegex($this->title, "/[^-a-z0-9_ ]/i");
+            
+            $this->DAL = new \dal\PlaylistDAL();
+            $this->trackDAL = new \dal\TrackDAL();
+        } catch (Exception $e) {
+            echo $e;
+        }
     }
     
     public function getTitle() {
@@ -41,9 +49,9 @@ class Playlist {
         $this->id = $id;
     }
     
-    public function save() {
-        $this->DAL->addPlaylist($this);
-    }
+    // public function save() {
+    //     $this->DAL->addPlaylist($this);
+    // }
     
     private function getTracksFromDB() {
         return $this->trackDAL->getTracksByPlaylistId($this->id);

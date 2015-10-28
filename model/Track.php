@@ -2,6 +2,8 @@
 
 namespace model;
 
+require_once("other/ValidationHandler.php");
+
 class Track {
     
     private $id;
@@ -10,10 +12,19 @@ class Track {
     private $url;
     
     public function __construct($id, $playlistId, $title, $url) {
-        $this->id = $id;
-        $this->playlistId = $playlistId;
-        $this->title = $title;
-        $this->url = $url;
+        $validate = new \other\ValidationHandler();
+        
+        try {
+            $this->id = $id;
+            $this->playlistId = $playlistId;
+            $this->title = $title;
+            $this->url = $url;
+            
+            $validate->validateLength($this->title, 3, 50);
+            $validate->validateWithRegex($this->title, "/[^-a-z0-9_ ]/i");
+        } catch (Exception $e) {
+            echo $e;
+        }
     }
     
     public function getTitle() {

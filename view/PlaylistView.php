@@ -28,6 +28,7 @@ class PlaylistView {
             <div>
                 <a href="?playlists&del='. $pl->getId() .'">Delete playlist</a>
             </div>
+            <div>Add new track (only youtube URL:s are valid at this moment): </div>
             <div>'.$this->showMessage().'</div>
             <div>'. $this->trackInputHTML() .'</div>
             <div>'.
