@@ -25,6 +25,9 @@ class PlaylistDAL extends DALBase {
                 $ret[] = $playlist;
             } 
         } 
+        
+        $this->conn->close();
+        
         return $ret;
     }
     
