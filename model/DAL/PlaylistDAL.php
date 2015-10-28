@@ -11,7 +11,7 @@ class PlaylistDAL extends DALBase {
         parent::__construct();
     }
     
-    public function selectAll() {
+    public function getAllPlaylists() {
 
         $sql = "SELECT Id, Title from playlist";
         $result = $this->conn->query($sql);
@@ -24,10 +24,7 @@ class PlaylistDAL extends DALBase {
                 $playlist->setId($row['Id']);
                 $ret[] = $playlist;
             } 
-        } else {
-            echo "0 results";
-        }
-        
+        } 
         return $ret;
     }
     
@@ -39,9 +36,7 @@ class PlaylistDAL extends DALBase {
             $row = $result->fetch_assoc();    
             $ret = new \model\Playlist($row["Title"]);
             $ret->setId($row["Id"]);
-        } else {
-            $ret = "0 results";
-        }
+        } 
         return $ret;
     }
     
@@ -56,7 +51,6 @@ class PlaylistDAL extends DALBase {
     }
     
     public function deletePlaylist($id) {
-        var_dump($id); exit();
         $sql = "DELETE FROM Playlist WHERE Id =" . $id;
         if ($this->conn->query($sql) === true) {
             $this->setMessage("playlistDeleted");

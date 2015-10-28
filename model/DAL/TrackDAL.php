@@ -30,8 +30,6 @@ class TrackDAL extends DALBase {
                 $track = new \model\Track($row["Id"], $row["PlaylistId"], $row["Title"], $row["Url"]);
                 $trackList[] = $track;
             } 
-        } else {
-            echo "0 results";
         }
         
         return $trackList;

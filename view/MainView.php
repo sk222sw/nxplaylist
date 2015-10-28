@@ -33,8 +33,8 @@ class MainView {
     
     private function navigationHTML() {
         echo '
-            <a href="?playlists">Playlists</a>
             <a href="/">Home</a>
+            <a href="?playlists">Playlists</a>
         ';
     }
     
@@ -67,6 +67,16 @@ class MainView {
 		    header("Location: " . $_SERVER['REQUEST_URI']);
 		    exit();        
         }
+    }
+    
+    public function welcomeHTML() {
+        return '
+            <br />
+            <p>nxPlaylist lets you gather youtube videos in playlists. Just copy the playlist url to share it with your friends!</p>
+            <p>In the future you will be able to gather tracks from different sources, such as youtube, soundcloud and spotify - 
+            but right now only youtube is working. In the future the next song will auto-play, but as we all know the future isnt here yet
+            so you will have to go back and choose a new song yourself. Oh right, there will be CSS in the future, beautiful CSS.</p>
+        ';
     }
     
 }

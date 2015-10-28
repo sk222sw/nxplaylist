@@ -26,6 +26,8 @@ class MasterController {
         $mainView = new \view\MainView();
         $playlistController = new \controller\PlaylistController();
         
+        $content;
+        
         if ($this->urlView->clickedPlaylists()) {
             
             $content = $playlistController->playlistAction();
@@ -39,7 +41,7 @@ class MasterController {
             $content = $playlistController->playlistAction();
 
         } else {
-            $content = "<h1>Yo!</h1>";
+            $content = $mainView->welcomeHTML();
         }
         
         $mainView->renderPage($content);

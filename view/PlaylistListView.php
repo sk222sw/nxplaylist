@@ -34,7 +34,8 @@ class PlaylistListView {
     }
     
     public function playlistListViewHTML($playlists) {
-        $listHTML = $this->inputHTML();
+        $listHTML = "<h2>Playlists</h2><h3>Add new: </h3>";
+        $listHTML .= $this->inputHTML();
         $listHTML .= "
         <div>
             ". $this->showMessage() ."
@@ -78,8 +79,7 @@ class PlaylistListView {
         $title = $this->getPostTitle();
 
         if ($this->validate($title)) {
-            $pl = new \model\Playlist($title);
-            $pl->save();
+            return $pl = new \model\Playlist($title);
         }
 
     }
