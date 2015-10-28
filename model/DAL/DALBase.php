@@ -2,7 +2,13 @@
 
 namespace DAL;
 
+/////////////////
+// CLASS RESPONSIBILITY:
+// handles connecting to DB and calls session to set DB call flash messages
 
+/////////////////
+//dependencies: 
+// \other\SessionHandler
 
 class DALBase {
     

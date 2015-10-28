@@ -2,6 +2,15 @@
 
 namespace model;
 
+/////////////////
+// CLASS RESPONSIBILITY:
+// model class for Playlist objects - get/return/construct objects
+
+/////////////////
+//dependencies: 
+// \other\ValidationHandler
+// \dal\TrackDAL
+
 require_once("other/ValidationHandler.php");
 
 class Playlist {
@@ -21,7 +30,7 @@ class Playlist {
             $validate->validateLength($this->title, 3, 50);       
             $validate->validateWithRegex($this->title, "/[^-a-z0-9_ ]/i");
             
-            $this->DAL = new \dal\PlaylistDAL();
+            // $this->DAL = new \dal\PlaylistDAL();
             $this->trackDAL = new \dal\TrackDAL();
         } catch (Exception $e) {
             echo $e;
@@ -32,7 +41,6 @@ class Playlist {
         return $this->title;
     }
     
-    // add track to this playlist
     public function add($track) {
         $this->tracks[] = $track;
     }
@@ -48,11 +56,7 @@ class Playlist {
     public function setId($id) {
         $this->id = $id;
     }
-    
-    // public function save() {
-    //     $this->DAL->addPlaylist($this);
-    // }
-    
+
     private function getTracksFromDB() {
         return $this->trackDAL->getTracksByPlaylistId($this->id);
     }

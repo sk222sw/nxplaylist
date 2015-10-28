@@ -2,6 +2,16 @@
 
 namespace DAL;
 
+/////////////////
+// CLASS RESPONSIBILITY:
+// handles calls to DB concerning Playlists
+// inherits from DALBase
+
+/////////////////
+//dependencies: 
+// \dal\DALBase
+// \model\Playlist
+
 require_once("model/Playlist.php");
 require_once("model/DAL/DALBase.php");
 
@@ -25,8 +35,6 @@ class PlaylistDAL extends DALBase {
                 $ret[] = $playlist;
             } 
         } 
-        
-        $this->conn->close();
         
         return $ret;
     }

@@ -2,8 +2,15 @@
 
 namespace view;
 
+
+/////////////////
 // CLASS RESPONSIBILITY:
-// gather other views and echo it to the DOM
+// gather other views and echo to the DOM
+
+/////////////////
+//dependencies: 
+// \other\SessionHandler
+
 class MainView {
     
     public function __construct() {
@@ -74,7 +81,7 @@ class MainView {
             <br />
             <p>nxPlaylist lets you gather youtube videos in playlists. Just copy the playlist url to share it with your friends!</p>
             <p>In the future you will be able to gather tracks from different sources, such as youtube, soundcloud and spotify - 
-            but right now only youtube is working. In the future the next song will auto-play, but as we all know the future isnt here yet
+            but right now only youtube works. In the future the next song will auto-play, but as we all know the future isnt here yet
             so you will have to go back and choose a new song yourself. Oh right, there will be CSS in the future, beautiful CSS.</p>
         ';
     }

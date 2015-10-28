@@ -2,6 +2,21 @@
 
 namespace controller;
 
+/////////////////
+// CLASS RESPONSIBILITY:
+// handle playlist logic - add/delete playlists/tracks etc
+
+/////////////////
+//dependencies: 
+// \view\UrlView
+// \view\PlaylistListView
+// \view\PlaylistView
+// \view\TrackView
+// \dal\PlaylistDAL
+// \model\Track
+// \model\Playlist
+// \model\Service
+
 require_once("view/UrlView.php");
 require_once("view/PlaylistListView.php");
 require_once("view/PlaylistView.php");
@@ -10,6 +25,7 @@ require_once("model/DAL/PlaylistDAL.php");
 require_once("model/DAL/TrackDAL.php");
 require_once("model/Track.php");
 require_once("model/Service.php");
+require_once("model/Playlist.php");
 
 class PlaylistController {
     

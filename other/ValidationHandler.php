@@ -2,6 +2,14 @@
 
 namespace other;
 
+/////////////////
+// CLASS RESPONSIBILITY:
+// abstraction class for validation - should probably be abstract
+
+/////////////////
+//dependencies: 
+// no dependencies
+
 class ValidationHandler {
     
     public function validateLength($s, $min, $max) {

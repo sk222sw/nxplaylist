@@ -2,6 +2,16 @@
 
 namespace other;
 
+/////////////////
+// CLASS RESPONSIBILITY:
+// handle sessions. however this is not fully implemented
+// in the rest of the application, so now it basically just 
+// starts a new session if there is none
+
+/////////////////
+//dependencies: 
+// liberated from dependencies
+
 class SessionHandler {
     
     public function __construct() {

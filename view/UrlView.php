@@ -2,8 +2,14 @@
 
 namespace view;
 
+/////////////////
 // CLASS RESPONSIBILITY:
 // handling routes and url query strings
+
+/////////////////
+//dependencies: 
+// none
+
 class UrlView {
     
     // route names

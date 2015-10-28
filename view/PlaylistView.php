@@ -2,7 +2,14 @@
 
 namespace view;
 
+/////////////////
+// CLASS RESPONSIBILITY:
+// handle POST concerning tracks
 // for viewing a selected playlist and adding tracks to the playlist
+
+/////////////////
+//dependencies: 
+//  \model\track
 
 class PlaylistView {
     
@@ -147,7 +154,7 @@ class PlaylistView {
                 case self::$flashTitleTooLong:
                     $message = self::$titleTooLong;
                     break;
-                case slef::$flashInvalidCharacters:
+                case self::$flashInvalidCharacters:
                     $message = self::$invalidCharacters;
                     break;
                 case self::$flashDeleted:

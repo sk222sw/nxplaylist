@@ -2,6 +2,14 @@
 
 namespace model;
 
+/////////////////
+// CLASS RESPONSIBILITY:
+// model class for Track objects - get/return/construct objects
+
+/////////////////
+//dependencies: 
+// \other\ValidationHandler
+
 require_once("other/ValidationHandler.php");
 
 class Track {

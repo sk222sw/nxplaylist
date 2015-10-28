@@ -1,17 +1,22 @@
 <?php
 
+/////////////////
+// CLASS RESPONSIBILITY:
+// master controller - handle app main functionality
+
+/////////////////
+//dependencies: 
+// \view\MainView
+// \view\UrlView
+// \controller\PlaylistController
+// \other\SessionHandler
+
 namespace controller;
 
 require_once("other/SessionHandler.php");
-//req views
 require_once("view/MainView.php");
 require_once("view/UrlView.php");
-//req models
-require_once("model/Playlist.php");
-//req controllers
 require_once("PlaylistController.php");
-
-
 
 class MasterController {
     

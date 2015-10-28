@@ -5,11 +5,11 @@ namespace view;
 /////////////////
 // CLASS RESPONSIBILITY:
 // return playlists as links and stuff in HTML
+// handle POST concerning playlists
 
 /////////////////
 //dependencies: 
 //  \model\Playlist
-//  \other\SessionHandler
 
 class PlaylistListView {
     
@@ -28,10 +28,6 @@ class PlaylistListView {
     private static $flashTitleTooShort = "titleTooShort";
     private static $flashTitleTooLong = "titleTooLong";
     private static $flashInvalidCharacters = "invalidCharacters";
-    
-    public function __construct() {
-        $this->session = new \other\SessionHandler();
-    }
     
     public function playlistListViewHTML($playlists) {
         $listHTML = "<h2>Playlists</h2><h3>Add new: </h3>";

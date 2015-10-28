@@ -2,6 +2,15 @@
 
 namespace view;
 
+
+/////////////////
+// CLASS RESPONSIBILITY:
+// return HTML concerning a selected track
+
+/////////////////
+//dependencies: 
+//  \model\Track
+
 class TrackView {
     
     public function trackViewHTML($track) {

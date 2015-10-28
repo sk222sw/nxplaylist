@@ -2,7 +2,14 @@
 
 namespace model;
 
-// the middle-man between the controller and the DAL
+/////////////////
+// CLASS RESPONSIBILITY:
+// talking to the DAL-classes (from controller)
+
+/////////////////
+//dependencies: 
+// \dal\PlaylistDAL
+// \dal\TrackDAL
 
 class Service {
     

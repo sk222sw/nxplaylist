@@ -2,6 +2,16 @@
 
 namespace DAL;
 
+/////////////////
+// CLASS RESPONSIBILITY:
+// handles calls to DB concerning Tracks
+// inherits from DALBase
+
+/////////////////
+//dependencies: 
+// \dal\DALBase
+// \model\Track
+
 class TrackDAL extends DALBase {
     
     public function __construct() {
